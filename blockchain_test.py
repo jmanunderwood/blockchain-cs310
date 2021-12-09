@@ -37,6 +37,8 @@ while cmd.lower() != "quit":
     if cmd.lower() == "listtx":
         account=input("Account: ")
 
+    if cmd.lower() == "valid":
+        print(blockchain.check_valid())
 
 print("Chain: ",blockchain.chain)
 
