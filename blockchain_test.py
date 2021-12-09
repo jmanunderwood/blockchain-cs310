@@ -12,10 +12,10 @@ while cmd.lower() != "quit":
         blockchain.new_transaction(sender,recipient,amount)
 
     if cmd.lower() == "mine": #mine block
-        blockchain.mine_block()
+        blockchain.mine_block("miner address here")
 
     if cmd.lower() == "out":
-        print("Chain: ",blockchain.chain)
+        print("Chain: ",repr(blockchain.chain))
 
     if cmd.lower() == "exp":
         with open('chain.txt','w') as outfile:
