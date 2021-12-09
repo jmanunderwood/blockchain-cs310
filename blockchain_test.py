@@ -27,9 +27,6 @@ while cmd.lower() != "quit":
             blockchain.chain=json.load(json_file)
         print("Chain: ",blockchain.chain)
 
-    if cmd.lower() == "bal":
-        account=input("Account: ")
-
     if cmd.lower() == "gettx":
         account=input("Account: ")
         transaction=input("TxID: ")
@@ -38,7 +35,7 @@ while cmd.lower() != "quit":
         account=input("Account: ")
 
     if cmd.lower() == "valid":
-        print(blockchain.check_valid())
+        print(blockchain.check_valid(blockchain.chain))
 
 print("Chain: ",blockchain.chain)
 

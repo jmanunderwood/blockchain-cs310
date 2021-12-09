@@ -44,7 +44,9 @@ class Blockchain(object):
             current=chain[index]
             if current['previous_hash'] != self.hash(previous):
                 return False
-            
+        
+            previous=current
+            index+=1
         return True
 
     @property
