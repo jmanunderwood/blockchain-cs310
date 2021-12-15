@@ -4,13 +4,12 @@ import hashlib
 import json
 from os.path import exists
 
-address="Address"
+address="James U"
 data_path="data/"
 blockchain=blockchain.Blockchain()
 
 if not exists("data/block0.json"):
     blockchain.genesis()
-    print("GENESIS")
     
 i=0
 while exists(data_path+"block"+str(i)+".json"):
@@ -37,7 +36,7 @@ while cmd.lower() != "quit":
         for i in range(len(blockchain.chain)):
             print(json.dumps(blockchain.chain[i].all_attributes, indent=4))
 
-    if cmd.lower() == "balance":
+    if cmd.lower() == "balance": #check balance
         bal=0
         for i in range(len(blockchain.chain)):
             for j in range(len(blockchain.chain[i].data)):
@@ -48,5 +47,5 @@ while cmd.lower() != "quit":
         print("Balance for "+address+" is: ")
         print(str(bal))
 
-    if cmd.lower() == "valid":
+    if cmd.lower() == "valid": #validate the chain
         print(blockchain.check_valid(blockchain.chain))
