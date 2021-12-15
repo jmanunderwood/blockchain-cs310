@@ -46,22 +46,19 @@ class Blockchain(object):
         self.chain.append(block)
         return block
 
-    def load_chain(self,chain):
-        self.chain=chain
-
-    def proof_of_work(self, previous):  #iterates through nonce values, returning the successful value
+    def proof_of_work(self, block):  #iterates through nonce values, until it gets a hash with the required number of leading zeros
         new_nonce=1
         check=False
 
         while check==False:
-            hash=hashlib.sha256(
-                str(new_nonce**2-previous**2).encode()).hexdigest()
+            block.nonce=new_nonce
+            hash=block.hash
             if hash[:4]=="0000":    #require 4 leading digits of 0
                 check=True
             else:
                 new_nonce+=1
             
-            print(str(new_nonce)+": "+hash[:4])
+            print(str(new_nonce)+": "+hash)
         return new_nonce
         
     def hash(self,block):
@@ -104,7 +101,8 @@ class Blockchain(object):
             amount=1 #mining reward
         )
         previous_block=self.last_block
-        nonce=self.proof_of_work(previous_block.nonce)
+
 
         previous_hash=previous_block.hash
-        block=self.new_block(nonce,previous_hash=previous_hash)
+        block=self.new_block(nonce=1,previous_hash=previous_hash)
+        nonce=self.proof_of_work(block)
